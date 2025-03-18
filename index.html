@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Grid with Circle and Title</title>
+    <style> 
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            border-radius: 50%;
+            margin-bottom: 10px; /* Space between circle and title */
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px; /* Space between title and grid */
+        }
+        .flexbox {
+            display: grid;
+            grid-template-columns: 200px 200px;
+            grid-template-rows: 250px 150px;
+            gap: 0;
+        }
+        .box {
+            margin: 1px;
+        }
+        .box:nth-child(2) {
+            grid-row: span 2; /* Make second box span two rows */
+            height: 400px; /* Equal to the combined height of first and third */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="circle"></div>
+        <div class="title">Hello World</div>
+        <div class="flexbox">
+            <div class="box" style="background-color: aqua; height: 250px; width: 200px;"></div>
+            <div class="box" style="background-color: red; width: 200px;"></div>
+            <div class="box" style="background-color: green; height: 150px; width: 200px;"></div>
+        </div>
+    </div>
+</body>
+</html>
