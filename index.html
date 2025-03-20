@@ -3,50 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fixed Grid with Circle and Title</title>
+    <title>Registration Form</title>
     <style> 
-        .container {
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f0f0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 20px;
+            justify-content: center;
+            min-height: 100vh;
         }
+
+
         .circle {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             background-color: blue;
             border-radius: 50%;
-            margin-bottom: 10px; /* Space between circle and title */
+            margin-bottom: 10px;
         }
+
+
         .title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 10px; /* Space between title and grid */
+            margin-bottom: 20px;
+            text-align: center;
         }
+
         .flexbox {
             display: grid;
-            grid-template-columns: 200px 200px;
-            grid-template-rows: 250px 150px;
-            gap: 0;
+            grid-template-columns: 400px 400px;
+            grid-template-rows: 500px 150px;
+            gap: 0; 
         }
+
         .box {
-            margin: 1px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
+
+
+        .box:nth-child(1) {
+            background-color: aqua;
+        }
+
+
         .box:nth-child(2) {
-            grid-row: span 2; /* Make second box span two rows */
-            height: 400px; /* Equal to the combined height of first and third */
+            background-color: red;
+            grid-row: span 2;
+            height: 650px;
+        }
+
+
+        .box:nth-child(3) {
+            background-color: green;
+        }
+
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            padding: 6px;
+            width: 100%;
+            border: 1px solid #000;
+        }
+
+        .gender-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-submit {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+
+        .box:nth-child(1) {
+            transition: background 0.3s ease;
         }
     </style>
+
+    <script>
+        function changeBgColor() {
+            let selectedColor = document.getElementById("bg-color").value;
+            document.querySelector(".box:nth-child(1)").style.backgroundColor = selectedColor;
+        }
+    </script>
+
 </head>
 <body>
-    <div class="container">
-        <div class="circle"></div>
-        <div class="title">Hello World</div>
-        <div class="flexbox">
-            <div class="box" style="background-color: aqua; height: 250px; width: 200px;"></div>
-            <div class="box" style="background-color: red; width: 200px;"></div>
-            <div class="box" style="background-color: green; height: 150px; width: 200px;"></div>
+
+    <div class="circle"></div>
+    <div class="title">Hello World</div>
+
+    <div class="flexbox">
+        <div class="box">
+            <label for="username">Username:</label>
+            <input type="text" id="username" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required>
+
+            <label for="country">Country:</label>
+            <select id="country" required>
+                <option value="">Select Country</option>
+                <option value="USA">USA</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Canada">Canada</option>
+                <option value="Japan">Japan</option>
+                <option value="Barishal">Barishal</option>
+            </select>
+
+            <label for="bg-color">Background Color:</label>
+            <select id="bg-color" onchange="changeBgColor()">
+                <option value="purple">Purple</option>
+                <option value="lightblue">Light Blue</option>
+                <option value="lightgreen">Light Green</option>
+                <option value="pink">Pink</option>
+                <option value="yellow">Yellow</option>
+            </select>
+
+            <label>Gender:</label>
+            <div class="gender-options">
+                <input type="radio" id="male" name="gender" value="Male" required>
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Accept Terms & Conditions</label>
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
         </div>
+
+        <div class="box"></div>
+        <div class="box"></div>
     </div>
+
 </body>
 </html>
