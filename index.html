@@ -21,7 +21,6 @@
             min-height: 100vh;
         }
 
-
         .circle {
             width: 80px;
             height: 80px;
@@ -29,7 +28,6 @@
             border-radius: 50%;
             margin-bottom: 10px;
         }
-
 
         .title {
             font-size: 22px;
@@ -52,11 +50,9 @@
             justify-content: center;
         }
 
-
         .box:nth-child(1) {
             background-color: aqua;
         }
-
 
         .box:nth-child(2) {
             background-color: red;
@@ -64,11 +60,9 @@
             height: 650px;
         }
 
-
         .box:nth-child(3) {
             background-color: green;
         }
-
 
         label {
             font-weight: bold;
@@ -93,7 +87,6 @@
             cursor: pointer;
         }
 
-
         .box:nth-child(1) {
             transition: background 0.3s ease;
         }
@@ -104,6 +97,74 @@
             let selectedColor = document.getElementById("bg-color").value;
             document.querySelector(".box:nth-child(1)").style.backgroundColor = selectedColor;
         }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const submitBtn = document.querySelector(".btn-submit");
+
+            submitBtn.addEventListener("click", function (e) {
+                e.preventDefault(); 
+
+                const username = document.getElementById("username").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+                const dob = document.getElementById("dob").value;
+                const country = document.getElementById("country").value;
+                const gender = document.querySelector("input[name='gender']:checked");
+
+
+                if (!/^[A-Za-z\s]+$/.test(username)) {
+                    alert("Username must contain only letters and spaces.");
+                    return;
+                }
+
+
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert("Please enter a valid email address.");
+                    return;
+                }
+
+                if (!/^[A-Za-z0-9]+$/.test(password)) {
+                    alert("Password must be alphanumeric with no special characters.");
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match.");
+                    return;
+                }
+
+  
+                const birthDate = new Date(dob);
+                const today = new Date();
+                const age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                const dayDiff = today.getDate() - birthDate.getDate();
+                let actualAge = age;
+                if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                    actualAge--;
+                }
+
+                if (isNaN(actualAge) || actualAge < 18 || actualAge > 150) {
+                    alert("You must be at least 18 years old and less than 150.");
+                    return;
+                }
+
+
+                if (country === "") {
+                    alert("Please select a country.");
+                    return;
+                }
+
+
+                if (!gender) {
+                    alert("Please select your gender.");
+                    return;
+                }
+
+                alert("Form submitted successfully!");
+            });
+        });
     </script>
 
 </head>
